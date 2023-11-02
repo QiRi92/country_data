@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Format File</title>
+    <!-- Favicon -->
+    <link href={% static "img/favicon.ico" %} rel="shortcut icon">
+    <!-- Logo -->
+    <link href={% static "img/logo.ico" %} rel="shortcut icon">
+    <!-- Bootstarp 5 Css    -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <!-- Static CSS -->
+    <link href={% static "css/style.css" %} rel="stylesheet">
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.2/b-2.3.4/b-html5-2.3.4/b-print-2.3.4/datatables.min.css"/><title>Links Directory</title>
+    <!-- Bootstarp 5 Icon    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container">
+        <div class="col">
+            <h3 style="text-align: center;">Format Source Files</h1>
+            <br>
+            <p>
+                1- This application only supported files in the format of xls, xlsx and csv.
+            </p>
+            <p>
+                2- Please see the below picture for the format file that needs to include in the file. Remember to include "NAME" in cell (1,1) and "UNIT" in cell (2,1).
+                It will produce an error when "NAME" and "UNIT" aren't included in the file.
+            </p>
+            <img src="static/img/format.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+    </div>
+</body>
+</html>

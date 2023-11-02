@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+<!-- Navbar content -->
+{% block navbar-content %} 
+<i style="color: lightskyblue;" class="fas fa-user-alt"></i>&nbsp;&nbsp; Links Directory
+{% endblock navbar-content %}
+
+<!-- Page Content -->
+{% block content %}
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+
+<div class="container">
+
+    <br>
+    
+    <!-- Smartphone mode -->
+    <div class="input-group input-group-sm">
+        <a class="btn btn-success btn-sm group-btn-sm" style="width: 40px;" data-bs-toggle="modal" data-bs-target="#addModal">
+            <i class="fas fa-plus"></i>
+        </a>    
+        <input class="form-control group-btn-sm" type="search" id="search-sm" placeholder="Live search..." aria-label="Search">
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-sm group-btn-sm"><i class="fas fa-sync-alt"></i></a>
+    </div>
+
+    <br>
+    <div class="btn-group btn-group-sm">
+        <div class="input-group input-group-sm txt-sm4">
+            <div class="input-group-prepend">
+                <div class="input-group-text">Country</div>
+            </div>
+        </div>
+        <select class="form-control-sm status-dropdown txt-sm4" aria-label=".form-control-sm example">
+            <option value="">All</option>              
+            {% for country in countries %}
+                <option value="{{ country }}">{{ country }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <br><br>
+    <div class="filter-wrapper">
+        <label class="btn btn-light btn-sm txt-sm4">
+            <input type="checkbox" class="filter-checkbox" value="Daily" /> Daily
+        </label>
+        <label class="btn btn-light btn-sm txt-sm4">
+            <input type="checkbox" class="filter-checkbox" value="Weekly" /> Weekly
+        </label>
+        <label class="btn btn-light btn-sm txt-sm4">
+            <input type="checkbox" class="filter-checkbox" value="Monthly" /> Monthly
+        </label>
+        <label class="btn btn-light btn-sm txt-sm4">
+            <input type="checkbox" class="filter-checkbox" value="Quarterly" /> Quarterly
+        </label>
+        <label class="btn btn-light btn-sm txt-sm4">
+            <input type="checkbox" class="filter-checkbox" value="Annually" /> Annually
+        </label>
+    </div>
+    
+    <table class="table table-striped" id="example" style="text-align: center;">
+        <thead class="table-info">
+            <tr>
+                <th style="text-align: center;">Country</th>
+                <th style="text-align: center;">Period</th>
+                <th style="text-align: center;">Link</th>
+                <th style="text-align: center;">Topics</th>
+                <th style="text-align: center;">Last Update</th>
+                <th style="text-align: center;">Next Release</th>
+                <th style="text-align: center;">File</th>
+                <th style="text-align: center;">Comments</th>
+                <th class="action-color">Graph</th>
+                <th class="action-color">Edit</th>
+                <th class="action-color">Delete</th>
+            </tr>
+        </thead>
+        <!-- Data from backend -->
+        {% for directory in directorys %}
+        <tr style="font-size: smaller;">
+            <td id="top-table" label="Country">{{ directory.country }}</td>
+            <td>{{ directory.periodic }}</td>
+            <td id="responsive-border" label="Link"><a href="{{ directory.link }}" class="btn btn-link btn-sm" role="button" target="_blank" style="font-weight: bold;">Link</a></td>
+            <td id="responsive-border" label="Topic">{{ directory.topics }}</td>
+            <td id="responsive-border" label="Last Update">{{ directory.last_update }}</td>
+            <td id="responsive-border" label="Next Update" class="text-danger" style="font-weight: bold;"><span class="badge badge-pill badge-warning text-danger">{{ directory.next_release }}</span></td>
+            <td id="responsive-border" label="File">{{ directory.filepresent }}</td>
+            <td><button type="button" class="btn btn-light btn-sm" data-toggle="tooltip" data-placement="top" title="{{ directory.comments }}"><span class="bi bi-three-dots"></span></button></td>
+            {% if directory.filepresent == "YES" %}
+                <td>
+                    <a class="btn btn-warning btn-sm `text-center" title="Graph" href="/line/{{ directory.id}}">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </td>
+            {% else %}
+                <td>
+                    <a class="btn btn-light btn-sm `text-center disabled" title="Graph">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </td>
+            {% endif %}
+            <td>
+                <a class="btn btn-success btn-sm text-center" title="Edit" data-bs-toggle="modal" data-bs-target="#editModal{{ directory.pk }}">
+                    <i class="fas fa-pen"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-secondary btn-sm `text-center" title="Delete" data-bs-toggle="modal" data-bs-target="#deleteModal{{ directory.pk }}">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>            
+        </tr>
+
+        <!-- ==== INCLUDE PAGE ==== -->
+        {% include 'edit.html' %}
+
+        <!-- Delete Confirmation -->
+        <div class="modal fade" id="deleteModal{{ directory.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fs-5" id="deleteModalLabel"><i class="fas fa-trash-alt txt-sm3"></i>&nbsp;&nbsp; <span class="txt-sm3">Delete Directory</span> </h5>
+                        <button type="button" class="btn-close txt-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center text-danger txt-sm"><i class="far fa-times-circle fa-5x mb-4 mt-2"></i></div>
+                        <div class="text-center text-danger txt-sm">
+                            <span>DO YOU WANT TO DELETE THIS DIRECTORY ???</span>
+                            <div class="text-dark mt-3 mb-2">Directory:<strong> {{ directory.country }} {{ directory.table_names }}</strong></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm txt-sm" data-bs-dismiss="modal">Cancel</button>
+                        <a href="/delete_directory/{{ directory.id}}" class="btn btn-outline-danger btn-sm txt-sm">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% endfor %}
+
+    </table>
+
+</div> <!-- END // container -->
+
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var m = "{{ message }}";
+        swal("perfect !", m, "success")
+    </script>
+    {% endif %}
+{% endfor %}
+
+<br><br><br><br><br>
+{% endblock content %}

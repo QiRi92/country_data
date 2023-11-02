@@ -1,0 +1,233 @@
+/* -------------------------
+# Start Configuration
+-------------------------- */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    max-width: 100%;
+}
+/* -------------------------
+# Footer
+-------------------------- */
+.wrapper {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+#footer,
+.push {
+    height: 50px;
+}
+/* ---------------------------------------
+# CUSTOM PAGINATION
+------------------------------------------ */
+.page-item.active .page-link {
+    columns:#fff;
+    background-color: #6c757d;
+    border: 1px solid #6c757d;
+}
+.pagination,
+div.dataTables_info,
+div.dataTables_length {
+    font-size: smaller;
+}
+.pagination > li > a {
+    background-color: #fff;
+    color: #6c757d;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > span > a:focus,
+.pagination > span > a:hover {
+    color: #111;
+    background-color: #d3d3d3;
+    border: 1px solid #6c757d;
+    box-shadow: none;
+}
+/* ---------------------------------------
+# DATATABLES
+------------------------------------------ */
+/* Pagination */
+.dataTables_paginate {
+    margin-top: -30px !important;
+}
+/* Input search */
+.dataTables_filter {
+    display: none;
+}
+/* Show entries */
+.dataTables_length {
+    float: right !important;
+    margin-bottom: 10px !important;
+}
+/* Group buttons */
+.dt-buttons {
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+}
+.buttons-print, .buttons-excel, .buttons-copy, .buttons-pdf {
+    background-color: #d1e7dd;
+    color: #111;
+}
+#butang:active {
+    background-color: green;
+}
+/* ---------------------------------------
+# OTHERS
+------------------------------------------ */
+/* Labels of inputs */
+.side-label {
+    width: 45px;
+}
+.group-btn-sm { /* --> smartphone mode */
+    display: none;
+}
+#nav-content {
+    text-align: center; 
+    color: #fff; 
+    margin-left: 25px;
+}
+/* ---------------------------------------
+# SWEETALERT CUSTOMIZED
+------------------------------------------ */
+.swal-modal {
+    background-color: rgba(0, 0, 0, 0.651);
+    color: #fff;
+}
+.swal-title {
+    color: #fff;
+    font-size: 20px;
+}
+.swal-text {
+    color: #fff;
+    font-size: 15px;
+}
+/* Button */
+.swal-button {
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #198754;
+    font-size: 12px;
+    border: 1px solid #198754;
+}
+.swal-button:focus {
+    box-shadow: none;
+}
+.swal-button:not([disabled]):hover{
+    background: transparent;
+    color: #fff;
+    border: 1px solid #198754;
+}
+/* Icons */
+.swal-icon--success__hide-corners {
+    background: none !important;
+}
+.swal-icon--success:before,
+.swal-icon--success:after {
+    background: none !important;
+}
+.action-color {
+    color: transparent;
+}
+th:nth-child(12), th:nth-child(13) {
+    border: none;
+}
+/* ---------------------------------------
+# RESPONSIVE MODE FOR TABLETS (1199 px)
+------------------------------------------ */
+@media(max-width: 1199px) {
+    /* Responsive table */
+    .table thead {
+        display: none;
+    }
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+    }
+    .table tr {
+        margin-bottom: 15px;
+        border: 1px solid #111;
+        border-radius: 3px;
+    }
+    .table td {
+        text-align: right;
+        padding-left: 35%;
+        position: relative;
+        border: 1px solid transparent;
+    }
+    .table td::before {
+        content: attr(label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+    }
+    .table > thead > tr:first-child {
+        display: none;
+        margin-top: 5px;
+    }
+    /* Responsive border */
+    #responsive-border {
+        border: 1px solid #a9a9a9;
+    }
+    /* First cell - changing the color */
+    #top-table {
+        background-color: #111;
+        color: #fff;
+    }
+}
+/* ---------------------------------------
+# RESPONSIVE MODE FOR SMARTPHONE (575 px)
+------------------------------------------ */
+@media(max-width: 575px) {
+    /* TXT-SM Levels */
+    .txt-sm {
+        font-size: 12px;
+    }
+    .txt-sm2 {
+        font-size: 14px;
+    }
+    .txt-sm3 {
+        font-size: 16px;
+    }
+    .txt-sm4 {
+        font-size: 10px;
+    }
+    /* Footer */
+    #footer {
+        font-size: 13px;
+    }
+    /* Group buttons on navbar */
+    .group-btn-sm { /* --> smartphone mode */
+        display: inline;
+        margin-top: 25px;
+    }
+    .group-btn {    /* --> desktop mode */
+        display: none;
+    }
+    #nav-content {
+        margin-left: 1px;
+    }  
+    /* ======== DataTables ======== */
+    /* Show entries (Data page) */
+    .dataTables_length {
+        float: left !important;
+        margin-top: 10px !important;
+        font-size: 12px;
+    }
+    /* Pagination */
+    .dataTables_paginate {
+        margin-top: 0px !important;
+        float: right !important;
+        font-size: 12px;
+    }
+    /* Footer (dataTables) */
+    .dataTables_info {
+        display: none;
+    }
+    .dataTables_empty {
+        margin-left: -35% !important;
+    }
+}
